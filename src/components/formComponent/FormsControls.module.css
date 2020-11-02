@@ -1,0 +1,14 @@
+.inputError {
+    border: 1px solid red;
+    width: 100%;
+    height: auto;
+
+}
+
+.errorText{
+
+    color: red;
+}
+.Input{
+    margin-bottom: 20px;
+}

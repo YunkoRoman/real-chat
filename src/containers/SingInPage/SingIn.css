@@ -1,0 +1,17 @@
+.redirectToRegPage{
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    height: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.redirectBtn{
+    font-weight: bold;
+}
+
+.redirectBtn:hover{
+    cursor: pointer;
+    color: #ef0600;
+}
