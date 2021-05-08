@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+
 import App from './components/app/App';
 
 import {Provider} from 'react-redux'
 import * as serviceWorker from './serviceWorker';
 import configureStore from "./store/store";
 import {BrowserRouter} from "react-router-dom";
-import rootSaga from './sagas'
 const store = configureStore();
 
 

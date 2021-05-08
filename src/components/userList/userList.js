@@ -76,9 +76,11 @@ class userList extends Component {
         };
         return (
             <div key={_id} className={'userListBox__list__users'} onClick={() => getMsg(_id, name)}>
-                <span className={'status'}> </span>
-                <p className={'userName'}> {name} </p>
-                <p className={'userSurname'}> {surname} </p>
+                <div className={'userListBox__list__userLogo'}>
+
+                </div>
+                <p className={'userName text'}> {name} </p>
+                <p className={'userSurname text'}> {surname} </p>
             </div>
         )
     }

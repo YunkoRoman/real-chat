@@ -3,21 +3,21 @@ import React, {Component} from 'react';
 import './chatMessages.css';
 import {connect} from "react-redux";
 import jwt_decode from "jwt-decode";
-import {Redirect} from "react-router-dom";
+
 
 class chatMessages extends Component {
     componentDidMount() {
-        
-        this.scrollToBottom();
+        if (this.el) this.scrollToBottom();
     }
 
     componentDidUpdate() {
-        this.scrollToBottom();
+        if (this.el) this.scrollToBottom();
     }
 
     scrollToBottom() {
-        this.el.scrollIntoView({behavior: 'smooth'});
+        if (this.el) this.el.scrollIntoView({behavior: 'smooth'});
     }
+
 
     render() {
 
@@ -25,10 +25,15 @@ class chatMessages extends Component {
         const messages = this.props.messageReducer.messages;
         return (
             <div className={'chatBox__messages__history_box'}>
-                {messages.map(this.messageRender, this)}
-                <div ref={el => {
-                    this.el = el;
-                }}/>
+                {this.props.userReducer.recipientUser ?
+                    <div>{messages.map(this.messageRender, this)}
+                        <div ref={el => {
+                            this.el = el
+                        }}/>
+                    </div> :
+                    <div className={'chatBox__messages__history_box__not_selected'}>
+                        <p>Виберіть чат </p>
+                    </div>}
             </div>
         )
     }
@@ -47,7 +52,8 @@ class chatMessages extends Component {
 
             <div key={_id} style={userSender.id === senderId ? right : null}
                  className={'chatMessages__messageBox'}>
-                <div className={'chatMessages__message'}>
+                <div
+                    className={userSender.id === senderId ? 'chatMessages__message_right' : 'chatMessages__message_left'}>
                     <p className={'chatMessages__msg'}>{text}</p>
                 </div>
             </div>
@@ -57,6 +63,7 @@ class chatMessages extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        userReducer: state.userReducer,
         messageReducer: state.messageReducer
     }
 };

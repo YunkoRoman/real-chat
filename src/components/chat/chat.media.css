@@ -1,0 +1,8 @@
+@media (max-width: 768px){
+    .chatBox__UserList{
+        display: none;
+    }
+    .chatBox__messages{
+        width: 100%;
+    }
+}

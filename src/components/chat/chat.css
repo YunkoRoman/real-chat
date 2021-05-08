@@ -1,16 +1,33 @@
 .chatBox{
     width: 800px;
+    background-color: #ffffff;
     height: 500px;
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.7);
     border-radius: 5px;
-    background: #d4bdc626;
+    /*background: #d4bdc626;*/
     display: flex;
     margin-top: 25px;
 
 }
+
 .chatBox__messages{
     width: 76%;
     height: 100%;
+}
+.chatBox__messages__history::-webkit-scrollbar {
+    width: 10px;
+    background-color: #f9f9fd;
+}
+
+.chatBox__messages__history::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #b7bcbc;
+}
+
+.chatBox__messages__history::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    background-color: #f9f9fd;
 }
 .chatBox__onlineFriends{
     border: 1px solid blue;
@@ -42,12 +59,10 @@
     width: 100%;
     height: 100%;
     border: none;
-    color: rgba(255, 255, 255, 0.9);
+
     font-size: 12pt;
 }
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: rgba(255, 255, 255, 0.9);
-}
+
 .inpImg{
     width: 35px;
     height: 35px;
@@ -55,4 +70,5 @@
 }
 .chatBox__UserList{
     width: 24%;
+    border-left: 1px solid #bdbcbc;;
 }

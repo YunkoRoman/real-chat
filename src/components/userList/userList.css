@@ -11,30 +11,34 @@
     font-size: 1em;
 }
 .userListBox__list__users{
-    margin-top: 15px;
+
+    height: 45px;
+    margin-bottom: 15px;
     width: 100%;
     display: flex;
     justify-content: left ;
 }
 .userListBox__list__users:hover{
-    background: #a5a8a6;
+    background: #F2F6FA;
     cursor: pointer;
 
 }
-.status{
-    margin: 4px 20px 0 20px;
-    width: 7px;
-    height: 7px;
-    border-radius: 5px;
-    background: red;
+.userListBox__list__userLogo{
+    margin-left: 5px;
+    margin-right: 5px ;
+    width: 35px;
+    border-radius: 50%;
+    height: 35px;
+    border: 1px solid red;
 }
 .userName{
-    color: #FFF;
+
+    color: #000000;
     font-size: 0.7em;
     margin-top: 2px;
 }
 .userSurname{
-    color: #FFF;
+    color: #000000;
     font-size: 0.7em;
     margin-top: 2px;
     margin-left: 2px;

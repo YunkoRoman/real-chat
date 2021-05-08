@@ -9,6 +9,8 @@ import ChatMessages from '../../components/chatMessagesHistory'
 import UserList from '../../components/userList';
 import {sendMessage, saveNewPrivateMsg} from '../../actions/messages-actions'
 import './chat.css';
+import './chat.media.css';
+import '../../media.css'
 
 let socket;
 
@@ -31,13 +33,15 @@ class Chat extends Component {
         if (userObj) {
             const token = userObj.token;
             const {_id, name: senderName} = jwt_decode(token);
-            const {id, name} = this.props.userReducer.recipientUser;
-            socket = socketIOClient.connect(backUrl);
-            socket.emit('userId', {userId: _id});
-            socket.on('privateMsg', data => {
-                this.props.saveNewPrivateMsg(_id, senderName, data, id, name,)
-            });
 
+            if(this.props.userReducer.recipientUser){
+                const {id, name} = this.props.userReducer.recipientUser;
+                socket = socketIOClient.connect(backUrl);
+                socket.emit('userId', {userId: _id});
+                socket.on('privateMsg', data => {
+                    this.props.saveNewPrivateMsg(_id, senderName, data, id, name,)
+                });
+            }
         }
     }
 

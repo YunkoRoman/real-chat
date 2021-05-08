@@ -34,18 +34,15 @@ class ChatPage extends Component {
                 from={'/'}
                 to={'/SingIn'}/>
         }
-        const recipientUser = this.props.userReducer.recipientUser;
+
         return (
 
             <div className={'generalBox'}>
                 <header>
                     <div className={'ext_btn'} onClick={this.redirect}>Вихід</div>
                 </header>
-                {recipientUser === undefined ?
-                    <div>
-                        <h1 className={''}> Оберіть співрозмоника </h1>
-                        <UserList/>
-                    </div> : <Chat/>}
+                <Chat/>
+
             </div>
         )
 
@@ -54,6 +51,7 @@ class ChatPage extends Component {
 }
 
 const mapStateToProps = (state) => {
+
 
     return {
         userReducer: state.userReducer

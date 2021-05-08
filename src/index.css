@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap');
 html,
 body,
 div,
@@ -163,5 +164,13 @@ input {
 #root{
     height: 100%;
 }
+.text{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+textarea::placeholder{
+    color: rgba(183, 188, 188, 0.9);
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
