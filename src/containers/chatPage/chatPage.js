@@ -76,7 +76,6 @@ class ChatPage extends Component {
 
 const mapStateToProps = (state) => {
 
-    console.log(state);
     return {
         userReducer: state.userReducer
     }

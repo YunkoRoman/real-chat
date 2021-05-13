@@ -7,19 +7,20 @@ import {
     MESSAGES_HAS_LOADED,
     ERROR_LOADING
 } from '../action-types/messages-actionTypes';
+import {sendPrivateMessage} from "../services/socket.service";
 
 
 export function* sendMessage(action) {
     try {
 
-        // const res = yield call(
-        //     sendPrivateMessage,
-        //     action.socket,
-        //     action.userRecipientId,
-        //     action.userRecipientName,
-        //     action.msg, action.senderId,
-        //     action.senderName
-        // );
+        yield call(
+            sendPrivateMessage,
+            action.socket,
+            action.userRecipientId,
+            action.userRecipientName,
+            action.msg, action.senderId,
+            action.senderName
+        );
 
         yield put({type: SAVE_MESSAGE_TO_STATE, action})
     } catch (error) {

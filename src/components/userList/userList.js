@@ -87,7 +87,6 @@ class userList extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         userReducer: state.userReducer,
         userCheck: state.userCheck

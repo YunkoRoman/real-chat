@@ -25,14 +25,13 @@ class Chat extends Component {
 
     }
 
-    componentDidMount() {
+    componentDidUpdate() {
 
 
         const userObj = JSON.parse(localStorage.getItem('user'));
         if (userObj) {
             const token = userObj.token;
             const {_id, name: senderName} = jwt_decode(token);
-
             if (this.props.userReducer.recipientUser) {
                 const {id, name} = this.props.userReducer.recipientUser;
                 socket = socketIOClient.connect(backUrl);
@@ -99,9 +98,10 @@ class Chat extends Component {
                         <div className={'chatBox__messages__history'}>
                             <ChatMessages/>
                         </div>
-                        <div className={ this.props.userReducer.recipientUser ? 'chatBox__messages__typeMess' : 'displayNone'}>
+                        <div
+                            className={this.props.userReducer.recipientUser ? 'chatBox__messages__typeMess' : 'displayNone'}>
                             <form
-                                className={'chatBox__messages__typeMess__form' }
+                                className={'chatBox__messages__typeMess__form'}
                                 onSubmit={this.handleSubmit}
                                 onKeyPress={this.keyPressedEnter}>
                 <textarea placeholder={'Ваше повідомлення'} className={'customInput'}
