@@ -18,19 +18,19 @@
     flex-wrap: wrap;
 }
 .chatMessages__message_right{
-    width: 310px;
+    max-width: 285px;
     background-color: hsl(176deg 45% 64%);
     margin: 20px 20px 0 20px;
-    border-radius: 25px;
+    border-radius: 15px;
 
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.08);
     word-wrap: break-word;
 
 }.chatMessages__message_left{
-    width: 310px;
+    max-width: 285px;
      background-color: hsl(189deg 8% 69%);
     margin: 20px 20px 0 20px;
-    border-radius: 25px;
+    border-radius: 15px;
 
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.08);
     word-wrap: break-word;
@@ -47,7 +47,7 @@
 .chatMessages__msg{
     font-family: 'Roboto', sans-serif;
     font-weight: normal;
-    margin: 20px;
+    margin: 10px;
     color: #ffffff;
     font-size: 0.7em;
 

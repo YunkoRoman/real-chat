@@ -168,6 +168,9 @@ input {
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
 }
+.displayNone{
+    display: none;
+}
 textarea::placeholder{
     color: rgba(183, 188, 188, 0.9);
 }

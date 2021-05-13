@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import socketIOClient from "socket.io-client";
 import jwt_decode from "jwt-decode";
-
-
+import MediaQuery from 'react-responsive'
 import {backUrl} from '../../constants/apiUrl'
 import ChatMessages from '../../components/chatMessagesHistory'
 import UserList from '../../components/userList';
@@ -34,7 +33,7 @@ class Chat extends Component {
             const token = userObj.token;
             const {_id, name: senderName} = jwt_decode(token);
 
-            if(this.props.userReducer.recipientUser){
+            if (this.props.userReducer.recipientUser) {
                 const {id, name} = this.props.userReducer.recipientUser;
                 socket = socketIOClient.connect(backUrl);
                 socket.emit('userId', {userId: _id});
@@ -75,31 +74,53 @@ class Chat extends Component {
 
         return (
             <div className={'chatBox'}>
-                <div className={'chatBox__messages'}>
-                    <div className={'chatBox__messages__history'}>
-                        <ChatMessages/>
+                <MediaQuery minDeviceWidth={280} maxWidth={768}>
+                    <div className={this.props.userReducer.recipientUser ? 'chatBox__messages' : 'displayNone'}>
+                        <div className={'chatBox__messages__history'}>
+                            <ChatMessages/>
+                        </div>
+                        <div className={'chatBox__messages__typeMess'}>
+                            <form className={'chatBox__messages__typeMess__form'} onSubmit={this.handleSubmit}
+                                  onKeyPress={this.keyPressedEnter}>
+                <textarea placeholder={'Ваше повідомлення'} className={'customInput'}
+                          value={this.state.value} onChange={this.handleChange}/>
+                                <input type='image' src={process.env.PUBLIC_URL + '/sendBtn.png'} alt={'Image'}
+                                       className={'inpImg'}/>
+                            </form>
+                        </div>
                     </div>
-                    <div className={'chatBox__messages__typeMess'}>
-                        <form className={'chatBox__messages__typeMess__form'} onSubmit={this.handleSubmit}
-                              onKeyPress={this.keyPressedEnter}>
-                            <textarea placeholder={'Ваше повідомлення'} className={'customInput'}
-                                      value={this.state.value} onChange={this.handleChange}/>
-                            <input type='image' src={process.env.PUBLIC_URL + '/sendBtn.png'} alt={'Image'}
-                                   className={'inpImg'}/>
-                        </form>
+                    <div className={this.props.userReducer.recipientUser ? 'displayNone' : 'chatBox__UserList'}>
+                        <UserList/>
                     </div>
-                </div>
-                <div className={'chatBox__UserList'}>
-                    <UserList/>
-                </div>
+                </MediaQuery>
 
+                <MediaQuery minDeviceWidth={769}>
+                    <div className={'chatBox__messages'}>
+                        <div className={'chatBox__messages__history'}>
+                            <ChatMessages/>
+                        </div>
+                        <div className={ this.props.userReducer.recipientUser ? 'chatBox__messages__typeMess' : 'displayNone'}>
+                            <form
+                                className={'chatBox__messages__typeMess__form' }
+                                onSubmit={this.handleSubmit}
+                                onKeyPress={this.keyPressedEnter}>
+                <textarea placeholder={'Ваше повідомлення'} className={'customInput'}
+                          value={this.state.value} onChange={this.handleChange}/>
+                                <input type='image' src={process.env.PUBLIC_URL + '/sendBtn.png'} alt={'Image'}
+                                       className={'inpImg'}/>
+                            </form>
+                        </div>
+                    </div>
+                    <div className={'chatBox__UserList'}>
+                        <UserList/>
+                    </div>
+                </MediaQuery>
             </div>
         )
     }
 }
 
 const mapStateToProps = (state) => {
-
     return {
         userReducer: state.userReducer
     }

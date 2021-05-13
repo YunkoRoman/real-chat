@@ -1,7 +1,8 @@
 import {
     USERS_LISTS_HAS_LOADED,
     SAVE_USER_RECIPIENT,
-    ERROR_LOAD_LIST
+    ERROR_LOAD_LIST,
+    DELETE_USER_RECIPIENT_FROM_STATE
 } from '../action-types/users-actionTypes'
 
 
@@ -27,6 +28,12 @@ export const userReducer = (state = [], action) => {
             return {
                 loadingError: action.Error.data,
                 errorStatus: action.Error.status
+            };
+
+        case  DELETE_USER_RECIPIENT_FROM_STATE:
+            return {
+                ...state,
+                recipientUser: null
             };
         default :
             return state

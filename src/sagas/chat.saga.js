@@ -1,5 +1,5 @@
 import {put, call} from 'redux-saga/effects';
-import {sendPrivateMessage} from '../services/socket.service'
+
 import messageSevice from '../services/message.service'
 import {
     SAVE_MESSAGE_TO_STATE,
@@ -12,14 +12,14 @@ import {
 export function* sendMessage(action) {
     try {
 
-        const res = yield call(
-            sendPrivateMessage,
-            action.socket,
-            action.userRecipientId,
-            action.userRecipientName,
-            action.msg, action.senderId,
-            action.senderName
-        );
+        // const res = yield call(
+        //     sendPrivateMessage,
+        //     action.socket,
+        //     action.userRecipientId,
+        //     action.userRecipientName,
+        //     action.msg, action.senderId,
+        //     action.senderName
+        // );
 
         yield put({type: SAVE_MESSAGE_TO_STATE, action})
     } catch (error) {

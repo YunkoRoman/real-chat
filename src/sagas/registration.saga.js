@@ -1,4 +1,4 @@
-import { put, call, fork } from 'redux-saga/effects';
+import { put, call } from 'redux-saga/effects';
 import RegistrationService from '../services/registration.service'
 import {REGISTER_IS_SUCCESS} from '../action-types/registration-actionTypes'
 

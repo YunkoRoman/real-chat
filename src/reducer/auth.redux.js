@@ -1,4 +1,4 @@
-import {AUTH_IS_SUCCESS, AUTH_IS_ERROR, LOGOUT_USER} from '../action-types/auth-actionTypes'
+import {AUTH_IS_SUCCESS, AUTH_IS_ERROR} from '../action-types/auth-actionTypes'
 
 
 export default function auth(state = [], action) {

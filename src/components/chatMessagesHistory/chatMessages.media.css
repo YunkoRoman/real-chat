@@ -1,0 +1,5 @@
+@media (max-width: 768px) {
+    .chatBox__messages__history_box{
+        width: 100%;
+    }
+}

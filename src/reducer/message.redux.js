@@ -17,7 +17,7 @@ export const messageReducer = (state = initialState, action) => {
                     id: action.action.senderId,
                     name: action.action.senderName
                 },
-                date: new Date
+                date: new Date()
             };
             state = {
                 ...state,
@@ -38,8 +38,8 @@ export const messageReducer = (state = initialState, action) => {
 
                 loadingError: action.Error.data,
                 errorStatus: action.Error.status
-            }
-
+            };
+        /* falls through */
         default:
             return state
     }

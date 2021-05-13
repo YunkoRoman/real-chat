@@ -46,7 +46,7 @@ class userList extends Component {
             return (
                 <div className={'userListBox'}>
                     <div className={'userListBox__head'}>
-                        <p className={'userListBox__head__p'}>Користувачі</p>
+
                     </div>
                     <div className={'userListBox__list'}>
                         {usersList.map(this.usersRender, this)}
@@ -87,7 +87,7 @@ class userList extends Component {
 }
 
 const mapStateToProps = (state) => {
-
+    console.log(state);
     return {
         userReducer: state.userReducer,
         userCheck: state.userCheck

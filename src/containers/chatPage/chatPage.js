@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import './chatPage.css';
+import MediaQuery from 'react-responsive'
 
 import {connect} from "react-redux";
 import Chat from '../../components/chat'
-import UserList from '../../components/userList';
 import {interceptors} from "../../interceptors/auth.interceptor";
 import {Redirect} from "react-router-dom";
+import {deleteUserFromState} from "../../actions/users-actions";
 
 
 class ChatPage extends Component {
@@ -23,9 +24,12 @@ class ChatPage extends Component {
 
         }
     }
+
     redirect = () => {
         this.setState({redirect: true})
     };
+
+
 
 
     render() {
@@ -34,29 +38,54 @@ class ChatPage extends Component {
                 from={'/'}
                 to={'/SingIn'}/>
         }
+        //Button for return to main page
+        const backButton = () => {
+            console.log('back')
+            this.props.deleteRecipientId()
+        }
 
         return (
 
             <div className={'generalBox'}>
-                <header>
-                    <div className={'ext_btn'} onClick={this.redirect}>Вихід</div>
-                </header>
-                <Chat/>
+                <MediaQuery minDeviceWidth={280} maxWidth={768}>
+                    <div className={'generalBox__media'}>
+                        <div className={'generalBox__media__header'}>
+                            <div
+                                className={this.props.userReducer.recipientUser ? 'generalBox__media__header__backImg' : 'displayNone'}>
+                                <img src={process.env.PUBLIC_URL + '/replydark.png'} onClick={() => backButton()} alt=""/>
+                            </div>
+                        </div>
+                        <Chat/></div>
+                </MediaQuery>
+                <MediaQuery minDeviceWidth={769}>
+                    <header>
+                        <div className={'ext_btn'} onClick={this.redirect}>Вихід</div>
+                    </header>
+                    <Chat/>
+                </MediaQuery>
+
 
             </div>
         )
 
 
     }
+
+
 }
 
 const mapStateToProps = (state) => {
 
-
+    console.log(state);
     return {
         userReducer: state.userReducer
     }
 };
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deleteRecipientId: () => dispatch(deleteUserFromState()),
+    }
+};
 
 
-export default connect(mapStateToProps, null)(ChatPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ChatPage);
